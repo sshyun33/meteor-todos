@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  triggers {
+    // cron('H 4/* 0 0 1-5')
+     cron('8 * * * *') 
+  }
   
   environment { 
         DOCKER_HOST = 'tcp://10.146.0.2:2375'
