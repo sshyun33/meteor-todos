@@ -7,16 +7,11 @@ pipeline {
     }
   
   stages {
-    stage("Clean up") {
-      steps {
-        sh "docker stack rm ${DOCKER_STACK_NAME}"
-        sh "sleep 5"
-      }
-    }
     stage("Build") {
       steps {
         // git "https://github.com/sshyun33/meteor-todos.git"
-	checkout scm
+        // checkout scm
+        echo "echo 'Build docker image...'"
       }
     }
     
