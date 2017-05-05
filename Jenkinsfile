@@ -1,8 +1,7 @@
 pipeline {
   agent any
   triggers {
-    // cron('H 4/* 0 0 1-5')
-     cron('* 3/* * * *') 
+     cron('H/5 * * * *') 
   }
   
   environment { 
@@ -11,10 +10,15 @@ pipeline {
     }
   
   stages {
+    stage("Clean up") {
+      steps {
+        sh "docker stack rm ${DOCKER_STACK_NAME}"
+        sh "sleep 30"
+      }
+    }
+
     stage("Build") {
       steps {
-        // git "https://github.com/sshyun33/meteor-todos.git"
-        // checkout scm
         echo "echo 'Build docker image...'"
       }
     }
